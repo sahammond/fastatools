@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 # functions to work with fasta files
 # written by Austin Hammond, BCGSC 2015 (except for fasta_iter)
