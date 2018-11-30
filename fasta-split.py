@@ -2,6 +2,7 @@
 # purpose: split a multi-sequence fasta file round-robin between the specified number of files
 # usage: cat sequence.fa | python fasta-split.py prefix number_of_files
 #  n.b. only works for fasta with one sequence per line
+#  n.b. this script prioritizes low memory use over speed; the many disk writes are inefficient.
 
 import sys
 
