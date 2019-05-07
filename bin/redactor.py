@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import sys
 import re
@@ -32,7 +32,7 @@ def main(sequnce_file):
             if line[0] == ">":
                 sys.stdout.write(line)
             else:
-                print redact(line, MINL)
+                print(redact(line, MINL))
 
 
 if __name__ == "__main__":

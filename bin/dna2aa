@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 ### @package dna2aa 
 ##   Translate the input sequence in the specified or all frames.
@@ -35,7 +35,8 @@ class translation(sequence):
         trans = dict(zip(_frames, _trans))
 
 
-    def print_trans(
+    def print_trans(): ## TODO finish function
+        pass
 
 
 def mtdna2aa(seq):
@@ -120,7 +121,7 @@ def len_thresh(sqn, threshold):
     if sqnL >= threshold:
         return sqnS
     else:
-        msg = "".join(["short_pep_", str(sqnL), "_residues"])
+        msg = f"short_pep_{str(sqnL)}_residues"
         return msg
 
 # setup parser
@@ -162,8 +163,8 @@ def check_frame(frm):
     elif frm == "3":
         frm = "+3"
     elif "-" not in frm:
-        print "ERROR: I didn't understand what reading frame you want."
-        print "Please specify 'all' or a single frame including + or - and retry."
+        print("ERROR: I didn't understand what reading frame you want.")
+        print("Please specify 'all' or a single frame including + or - and retry.")
         sys.exit(1)
 
     return [frm]
@@ -294,7 +295,7 @@ if outfile == "stdout":
                                 header = "".join([">", nam, "_frame=", frame,
                                                   ";ORF_num=", str(seqno + 1),
                                                   "\n"])
-                                print header, trimmed
+                                print(header, trimmed)
                                 seqno += 1
                             else:
                                 continue
@@ -304,7 +305,7 @@ if outfile == "stdout":
                             header = "".join([">", nam, "_frame=", frame,
                                               ";ORF_num=", str(seqno + 1),
                                               "\n"])
-                            print header, pep
+                            print(header, pep)
                             seqno += 1
                         else:
                             continue
@@ -318,12 +319,12 @@ if outfile == "stdout":
                         continue
                     else:
                         if "short_pep" not in len_thresh(trimmed, minlen):
-                            print "".join([">", nam, "_frame=", frame, "\n", trimmed])
+                            print("".join([">", nam, "_frame=", frame, "\n", trimmed]))
                         else:
                             continue
                 else:
                     if "short_pep" not in len_thresh(pep, minlen):
-                        print "".join([">", nam, "_frame=", frame, "\n", pep])
+                        print("".join([">", nam, "_frame=", frame, "\n", pep]))
                     else:
                         continue
 else:
@@ -344,7 +345,7 @@ else:
                                     header = "".join([">", nam, "_frame=", frame,
                                                       ";ORF_num=", str(seqno + 1),
                                                       "\n"])
-                                    print header, trimmed
+                                    print(header, trimmed)
                                     seqno += 1
                                 else:
                                     continue
@@ -353,7 +354,7 @@ else:
                             if "short_pep" not in len_thresh(pep, minlen):
                                 header = "".join([">", nam, "_frame=", frame,
                                                   ";ORF_num=", str(seqno + 1), "\n"])
-                                print >> finalout, header, pep
+                                print(header, pep, file=finalout)
                                 seqno += 1
                             else:
                                 continue
@@ -367,15 +368,15 @@ else:
                         else:
                             # check peptide length >= minlen
                             if "short_pep" not in len_thresh(trimmed, minlen):
-                                print >> finalout, "".join([">", nam, "_frame=",
-                                                            frame, "\n", trimmed])
+                                print(file=finalout, "".join([">", nam, "_frame=",
+                                                            frame, "\n", trimmed]))
                             else:
                                 continue
                     else:
                         # check peptide length >= minlen
                         if "short_pep" not in len_thresh(pep, minlen):
-                            print >> finalout, "".join([">", nam, "_frame=", frame,
-                                                        "\n", pep])
+                            print(file=finalout, "".join([">", nam, "_frame=", frame,
+                                                        "\n", pep]))
                         else:
                             continue
 ### EOF ###

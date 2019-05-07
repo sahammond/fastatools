@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # purpose: split a multi-sequence fasta file round-robin between the specified number of files
 # usage: cat sequence.fa | python fasta-split.py prefix number_of_files
 #  n.b. only works for fasta with one sequence per line
@@ -7,9 +7,9 @@
 import sys
 
 if len(sys.argv) != 3:
-	print '\npurpose: split a multi-sequence fasta file round-robin between the specified number of files'
-	print 'usage: cat sequence.fa | fasta-split.py prefix number_of_files'
-	print ' n.b. only works for fasta with one sequence per line\n'
+	print('\npurpose: split a multi-sequence fasta file round-robin between the specified number of files')
+	print('usage: cat sequence.fa | fasta-split.py prefix number_of_files')
+	print(' n.b. only works for fasta with one sequence per line\n')
 	quit()
 
 pref = sys.argv[1]

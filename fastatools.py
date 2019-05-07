@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 # functions to work with fasta files
 # written by Austin Hammond, BCGSC 2015 (except for fasta_iter)
@@ -15,10 +15,13 @@ def fasta_iter(fasta_name):
     faiter = (x[1] for x in groupby(fasta_name, lambda line: line[0] == ">"))
     for header in faiter:
         # drop the ">"
-        header = header.next()[1:].strip()
+        header = next(header)[1:].strip()
         # join all sequence lines to one.
-        seq = "".join(s.strip() for s in faiter.next())
-        yield header, seq
+        seq = "".join(s.strip() for s in next(faiter))
+        try:
+            yield (header, seq)
+        except StopIteration:
+            return
 
 ## dna2aa
 #

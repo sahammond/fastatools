@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import sys
 
@@ -8,12 +8,12 @@ from fastatools import revcomp
 
 if not sys.stdin.isatty():
 	for line in sys.stdin:
-		if line[0] == ">":
-			sys.stdout.write(line.strip("\n")+"_revcomp"+"\n")
+		if line[0] == '>':
+			sys.stdout.write(line.strip('\n')+'_revcomp'+'\n')
 		else:
-			sys.stdout.write(revcomp(line.strip("\n").upper())+"\n")
+			sys.stdout.write(revcomp(line.strip('\n').upper())+'\n')
 else:
-	print "Usage: cat sequence.fa | revcomp"
-	print '  or: echo "GATTACA" | revcomp'
+	print('Usage: cat sequence.fa | revcomp')
+	print('  or: echo GATTACA | revcomp')
 	sys.exit(1)
 ### EOF ###

@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import sys
 
@@ -12,7 +12,7 @@ with open(infile,"r") as fasta:
     for rec in fasta_iter(fasta):
         seqn = rec[1].upper()
         nam = ">" + rec[0]
-        print nam
+        print(nam)
         for base in seqn:
             if base not in bueno:
                 sys.stdout.write("N")

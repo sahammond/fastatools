@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 # identify proteins that are subsumed within a larger one
 # uses my custom fasta reader
@@ -33,10 +33,10 @@ def main(fasta, prefix):
     # look for subsumed sequences
     subsumed = set()
     cnt = 0
-    for key, value in prots.items():
+    for key, value in list(prots.items()):
         cnt += 1
         if cnt % 100 == 0:
-            print '%s proteins checked' % cnt
+            print(f'{cnt} proteins checked')
         qry = value.sqn
         for rec in prots:
             # skip finding itself
@@ -48,13 +48,13 @@ def main(fasta, prefix):
                 break
 
     # write out non-subsumed sequences
-    print 'Number of input sequences is %s' % cnt
-    print 'Number of sequences subsumed within another is %s' % len(subsumed)
+    print(f'Number of input sequences is {cnt}')
+    print(f'Number of sequences subsumed within another is {len(subsumed)}')
     outname = '-'.join([prefix, 'nonSubsumed.fa'])
     outfile = open(outname, 'w')
-    for key, value in prots.items():
+    for key, value in list(prots.items()):
         if key not in subsumed:
-            print >> outfile, value.print_prot()
+            print(value.print_prot(), file=outfile)
     outfile.close()
 
 

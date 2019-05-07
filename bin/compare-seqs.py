@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import sys
 
@@ -31,25 +31,25 @@ with open(oldsqn,"r") as infile:
         seqid = rec[0]
         sqn = rec[1]
         if sqn in seqdict:
-            print >> collisions, "Collision between " + seqid + " AND previously added " + seqdict[sqn]
+            print(f"Collision between {seqid} AND previously added {seqdict[sqn]}", file=collisions)
         else:
             seqdict[sqn] = seqid
 collisions.close()
 
 if args.NewFASTA:
-    print "OldID\tNewID"
+    print("OldID\tNewID")
 
     with open(newsqn,"r") as infile:
         for rec in fasta_iter(infile):
             seqid = rec[0]
             sqn = rec[1]
             if sqn in seqdict:
-                print seqdict[sqn] + "\t" + seqid
+                print(seqdict[sqn] + "\t" + seqid)
 else:
     # write out unique sequences
-    for sqn, sid in seqdict.items():
-        print ">" + sid
-        print sqn
+    for sqn, sid in list(seqdict.items()):
+        print(f">{sid}")
+        print(sqn)
 
 
 ### EOF ###

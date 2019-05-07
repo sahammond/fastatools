@@ -1,11 +1,11 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 # Collect runs of N in scaffolds and write out positions as gff
 
 import argparse
 from itertools import groupby
 
-from fastatools import fasta_iter as f
+from fastatools import fasta_iter as fi
 
 parser = argparse.ArgumentParser(description="Collect runs of N in scaffolds and write out positions as gff.")
 parser.add_argument('scaffolds', action='store', help='The fasta file of scaffolds')
@@ -61,7 +61,7 @@ def getgaps(seqname, seq):
 #
 scaffolds = []
 with open(args.scaffolds,'r') as fasta:
-    for scaf in f(fasta):
+    for scaf in fi(fasta):
         scaffolds.append(scaf)
 
 with open(args.outfile,"w") as outfile:

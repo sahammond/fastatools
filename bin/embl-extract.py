@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import sys
 import re
@@ -25,8 +25,8 @@ class record(object):
                 lab = rec[0]
                 con = rec[1]
             except IndexError as e:
-                msg = '\nline that produced error is \n%s' % line
-                print e + msg
+                msg = f'\nline that produced error is \n{line}'
+                print(e + msg)
                 sys.exit(1)
             if lab == 'ID':
                 nam = con.split(' ')[0]
@@ -67,8 +67,8 @@ def main():
                 wrap = rec.wrap_lines()
                 if BAD_FLAG not in wrap:
 #                    print rec.wrap_lines()
-                    print wrap
-                    print rec.print_sq()
+                    print(wrap)
+                    print(rec.print_sq())
                 rec = record()
             else:
                 rec.add_line(line)
